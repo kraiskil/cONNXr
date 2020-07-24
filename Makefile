@@ -87,7 +87,7 @@ REPEAT_mobilenetv2=1
 
 CC=gcc
 CFLAGS+=-std=c99
-CFLAGS+=-Wall
+CFLAGS+=-Wall -Werror
 CFLAGS+=-g
 # CFLAGS+=-Werror # CI jobs run with flag enabled
 CPPFLAGS+=-D TRACE_LEVEL=$(TRACE_LEVEL)
@@ -126,7 +126,7 @@ ALL+=runtest
 TARGET+=runtest
 runtest: $(BUILDDIR)/runtest
 $(BUILDDIR)/runtest: $(OBJS)
-	$(CC) -o $@ src/test/tests.c $^ $(CPPFLAGS) $(LDFLAGS) $(LDLIBS)
+	$(CC) -o $@ src/test/tests.c $^ $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) $(LDLIBS)
 
 .phony: clean_build
 CLEAN+=clean_build
@@ -199,7 +199,7 @@ TARGET+=connxr
 ALL+=connxr
 connxr: $(BUILDDIR)/connxr
 $(BUILDDIR)/connxr: $(OBJS)
-	$(CC) -o $@ src/connxr.c $^ $(CPPFLAGS) $(LDFLAGS) $(LDLIBS)
+	$(CC) -o $@ src/connxr.c $^ $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) $(LDLIBS)
 
 define PROFILING_MODEL
 HELP_profiling_$(1)=run $(1) profiling
