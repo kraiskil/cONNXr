@@ -69,7 +69,7 @@ void test_model(
 
   printf("[benchmark][%s] cycles: %f\n", model_id, (double) (end - start));
   printf("[benchmark][%s] cpu_time_used: %f\n", model_id, cpu_time_used);
-  printf("[benchmark][%s] CLOCKS_PER_SEC: %ld\n", model_id, CLOCKS_PER_SEC);
+  printf("[benchmark][%s] CLOCKS_PER_SEC: %lld\n", model_id, (long long int)CLOCKS_PER_SEC);
 
   //Asserts the result using the last calculated output.
   printf("Will compare output %d = %s", _populatedIdx, all_context[_populatedIdx].outputs[0]->name);
